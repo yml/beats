@@ -28,7 +28,11 @@ func getFlatMapStr(val reflect.Value, prefix string) common.MapStr {
 			m[getKey(typeOfT.Field(i).Name, prefix)] = val.Field(i).String()
 		case reflect.Slice:
 			for j := 0; j < val.Field(i).Len(); j++ {
-				m = common.MapStrUnion(m, getFlatMapStr(val.Field(i).Index(j), fmt.Sprintf("%s-%d", typeOfT.Field(i).Name, j)))
+				m = common.MapStrUnion(
+					m,
+					getFlatMapStr(
+						val.Field(i).Index(j),
+						getKey(fmt.Sprintf("%s-%d", typeOfT.Field(i).Name, j), prefix)))
 			}
 		case reflect.Struct:
 			for j := 0; j < val.NumField(); j++ {
