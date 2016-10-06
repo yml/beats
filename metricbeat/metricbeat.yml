@@ -11,39 +11,44 @@
 metricbeat.modules:
 
 #------------------------------- System Module -------------------------------
-- module: system
-  metricsets:
-    # CPU stats
-    - cpu
+#- module: system
+#  metricsets:
+#    # CPU stats
+#    - cpu
+#
+#    # System Load stats
+#    - load
+#
+#    # Per CPU core stats
+#    #- core
+#
+#    # IO stats
+#    #- diskio
+#
+#    # Per filesystem stats
+#    - filesystem
+#
+#    # File system summary stats
+#    #- fsstat
+#
+#    # Memory stats
+#    - memory
+#
+#    # Network stats
+#    - network
+#
+#    # Per process stats
+#    - process
+#  enabled: true
+#  period: 10s
+#  processes: ['.*']
 
-    # System Load stats
-    - load
-
-    # Per CPU core stats
-    #- core
-
-    # IO stats
-    #- diskio
-
-    # Per filesystem stats
-    - filesystem
-
-    # File system summary stats
-    #- fsstat
-
-    # Memory stats
-    - memory
-
-    # Network stats
-    - network
-
-    # Per process stats
-    - process
+#------------------------------ uwsgibeat Module -----------------------------
+- module: uwsgibeat
+  metricsets: ["stats"]
   enabled: true
-  period: 10s
-  processes: ['.*']
-
-
+  period: 1s
+  url_stats: "http://10.245.115.31:1717"
 
 #================================ General =====================================
 
@@ -68,7 +73,8 @@ metricbeat.modules:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["localhost:9200"]
+  #hosts: ["localhost:9200"]
+  hosts: ["10.245.115.251:9200"]
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"

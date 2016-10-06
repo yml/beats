@@ -2970,6 +2970,19 @@
           "index": "not_analyzed",
           "type": "string"
         },
+        "uwsgibeat": {
+          "properties": {
+            "stats": {
+              "properties": {
+                "example": {
+                  "ignore_above": 1024,
+                  "index": "not_analyzed",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
         "zookeeper": {
           "properties": {
             "mntr": {

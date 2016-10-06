@@ -1,0 +1,6 @@
+- module: uwsgibeat
+  metricsets: ["stats"]
+  enabled: true
+  period: 1s
+  hosts: ["localhost"]
+

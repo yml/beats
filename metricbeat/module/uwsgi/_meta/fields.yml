@@ -1,0 +1,9 @@
+- key: uwsgibeat
+  title: "uwsgibeat"
+  description: >
+    uwsgibeat Module
+  fields:
+    - name: uwsgibeat
+      type: group
+      description: >
+      fields:

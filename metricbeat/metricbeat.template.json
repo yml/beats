@@ -2943,6 +2943,18 @@
           "ignore_above": 1024,
           "type": "keyword"
         },
+        "uwsgibeat": {
+          "properties": {
+            "stats": {
+              "properties": {
+                "example": {
+                  "ignore_above": 1024,
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+        },
         "zookeeper": {
           "properties": {
             "mntr": {
