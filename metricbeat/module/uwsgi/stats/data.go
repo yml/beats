@@ -21,7 +21,6 @@ func getFlatMapStr(val reflect.Value, prefix string) common.MapStr {
 	m := common.MapStr{}
 	typeOfT := val.Type()
 	for i := 0; i < val.NumField(); i++ {
-
 		switch val.Field(i).Kind() {
 		case reflect.Int:
 			m[getKey(typeOfT.Field(i).Name, prefix)] = val.Field(i).Int()
@@ -29,11 +28,11 @@ func getFlatMapStr(val reflect.Value, prefix string) common.MapStr {
 			m[getKey(typeOfT.Field(i).Name, prefix)] = val.Field(i).String()
 		case reflect.Slice:
 			for j := 0; j < val.Field(i).Len(); j++ {
-				m = common.MapStrUnion(m, getFlatMapStr(val.Field(i).Index(j), fmt.Sprintf("%s-%d", typeOfT.Field(j).Name, j)))
+				m = common.MapStrUnion(m, getFlatMapStr(val.Field(i).Index(j), fmt.Sprintf("%s-%d", typeOfT.Field(i).Name, j)))
 			}
 		case reflect.Struct:
 			for j := 0; j < val.NumField(); j++ {
-				m = common.MapStrUnion(m, getFlatMapStr(val.Field(j), typeOfT.Field(j).Name))
+				m = common.MapStrUnion(m, getFlatMapStr(val.Field(j), typeOfT.Field(i).Name))
 			}
 		default:
 			fmt.Println("type switch not found", val.Field(i).Kind())
