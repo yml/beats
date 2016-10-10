@@ -49,6 +49,10 @@ metricbeat.modules:
   enabled: true
   period: 1s
   url_stats: "http://10.245.115.31:1717"
+  #hosts: ["localhost"]
+
+
+
 
 #================================ General =====================================
 

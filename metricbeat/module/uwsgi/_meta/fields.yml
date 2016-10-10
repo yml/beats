@@ -7,3 +7,11 @@
       type: group
       description: >
       fields:
+        - name: workers
+          type: nested
+          description: >
+            workers
+          fields:
+            - name: Requests
+              type: integer
+              description: >

@@ -2,7 +2,6 @@ package uwsgi
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -71,7 +70,6 @@ type Stat struct {
 
 func GetStats(statAddr string) (*Stat, error) {
 	client := http.Client{}
-	fmt.Println(statAddr)
 	req, err := http.NewRequest("GET", statAddr, nil)
 	if err != nil {
 		return nil, err

@@ -2980,6 +2980,14 @@
                   "type": "string"
                 }
               }
+            },
+            "workers": {
+              "properties": {
+                "Requests": {
+                  "type": "long"
+                }
+              },
+              "type": "nested"
             }
           }
         },

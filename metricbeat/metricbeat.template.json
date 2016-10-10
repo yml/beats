@@ -2952,6 +2952,14 @@
                   "type": "keyword"
                 }
               }
+            },
+            "workers": {
+              "properties": {
+                "Requests": {
+                  "type": "long"
+                }
+              },
+              "type": "nested"
             }
           }
         },

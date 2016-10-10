@@ -11,7 +11,7 @@ import (
 
 func getKey(name, prefix string) string {
 	if prefix != "" {
-		name = fmt.Sprintf("%s-%s", prefix, name)
+		name = fmt.Sprintf("%s.%s", prefix, name)
 	}
 	return strings.ToLower(name)
 
@@ -32,7 +32,7 @@ func getFlatMapStr(val reflect.Value, prefix string) common.MapStr {
 					m,
 					getFlatMapStr(
 						val.Field(i).Index(j),
-						getKey(fmt.Sprintf("%s-%d", typeOfT.Field(i).Name, j), prefix)))
+						getKey(fmt.Sprintf("%s.%d", typeOfT.Field(i).Name, j), prefix)))
 			}
 		case reflect.Struct:
 			for j := 0; j < val.NumField(); j++ {
@@ -47,12 +47,24 @@ func getFlatMapStr(val reflect.Value, prefix string) common.MapStr {
 	return m
 }
 
+func getMapStr(stat *uwsgi.Stat) common.MapStr {
+	val := reflect.ValueOf(stat).Elem()
+	m := common.MapStr{}
+	typeOfT := val.Type()
+	for i := 0; i < val.NumField(); i++ {
+		m[typeOfT.Field(i).Name] = val.Field(i)
+	}
+	return m
+}
+
 // Map data to MapStr
 func eventMapping(stat *uwsgi.Stat) common.MapStr {
-	var event common.MapStr
+	//var event common.MapStr
 
-	val := reflect.ValueOf(stat).Elem()
-	event = getFlatMapStr(val, "")
+	//val := reflect.ValueOf(stat).Elem()
+	//event = getFlatMapStr(val, "")
+	//event := structs.Map(stat)
+	event := getMapStr(stat)
 
 	return event
 }
